@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <title>Clicker Chat</title>
+
+    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" type="text/css" href="tooltipster.css" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script type="text/javascript" src="jquery.tooltipster.min.js"></script>
+    <script src="main.js"></script>
+    <script src="cathy.js"></script>
+    <!--<script src="jquery-2.1.3.min.js"></script>--><!--offline jquery-->
+
+    <meta charset="UTF-8">
+    <meta name="description" content="Help Cathy take back her world in this incremental clicker.">
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-62107540-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+</head>
+<body>
+
+<!--==================
+CATHY TEXT BOX
+======================-->
+
+<div id="chattyCathy">
+    <p id="cathyString"></p>
+</div>
+
+<div id="spriteContainer"></div>
+
+<div id="healthBar">
+    <progress id="monsterBar" value="" max=""></progress>
+</div>
+
+<!--==================
+ACHIEVEMENTS
+======================-->
+
+<div id="achievementWindow" class="achievementWindows">
+    <div id="aTitle" class="aTitle">Achievements</div>
+    <div id="aCount" class="aCount">0/20</div>
+    <div id="aClicks" class="achievementHeaders">Clicks</div>
+    <div id="aOne" class="tooltip achievementBox" title="TOOLTIP"></div>
+    <div id="aTwo" class="tooltip achievementBox" title="TOOLTIP"></div>
+    <div id="aThree" class="tooltip achievementBox" title="TOOLTIP"></div>
+    <div id="aFour" class="tooltip achievementBox" title="TOOLTIP"></div>
+    <div id="aFive" class="tooltip achievementBox" title="TOOLTIP"></div>
+    <div id="aKills" class="achievementHeaders">Kills</div>
+    <div id="aSix" class="tooltip achievementBox" title="TOOLTIP"></div>
+    <div id="aSeven" class="tooltip achievementBox" title="TOOLTIP"></div>
+    <div id="aEight" class="tooltip achievementBox" title="TOOLTIP"></div>
+    <div id="aNine" class="tooltip achievementBox" title="TOOLTIP"></div>
+    <div id="aTen" class="tooltip achievementBox" title="TOOLTIP"></div>
+    <div id="aCores" class="achievementHeaders">Cores</div>
+    <div id="aEleven" class="tooltip achievementBox" title="TOOLTIP"></div>
+    <div id="aTwelve" class="tooltip achievementBox" title="TOOLTIP"></div>
+    <div id="aThirteen" class="tooltip achievementBox" title="TOOLTIP"></div>
+    <div id="aFourteen" class="tooltip achievementBox" title="TOOLTIP"></div>
+    <div id="aFifteen" class="tooltip achievementBox" title="TOOLTIP"></div>
+    <div id="aOther" class="achievementHeaders">Feats</div>
+    <div id="aSixteen" class="tooltip achievementBox" title="test"></div>
+    <div id="aSeventeen" class="tooltip achievementBox" title="TOOLTIP"></div>
+    <div id="aEighteen" class="tooltip achievementBox" title="TOOLTIP"></div>
+    <div id="aNineteen" class="tooltip achievementBox" title="TOOLTIP"></div>
+    <div id="aTwenty" class="tooltip achievementBox" title="TOOLTIP"></div>
+</div>
+
+<div id="achievementWindowTwo" class="achievementWindows">
+    <div id="aTitleTwo" class="aTitle">Elite Achievements</div>
+    <div id="aCountTwo" class="aCount">0/20</div>
+    <div id="aClicksTwo" class="achievementHeaders">More Clicks</div>
+    <div id="aTwentyOne" class="tooltip achievementBox" title="TOOLTIP"><img src="sprites/cursorOne.png"></div>
+    <div id="aTwentyTwo" class="tooltip achievementBox" title="TOOLTIP"><img src="sprites/cursorOne.png"></div>
+    <div id="aTwentyThree" class="tooltip achievementBox" title="TOOLTIP"><img src="sprites/cursorOne.png"></div>
+    <div id="aKillsTwo" class="achievementHeaders">More Kills</div>
+    <div id="aTwentyFour" class="tooltip achievementBox" title="TOOLTIP"></div>
+    <div id="aTwentyFive" class="tooltip achievementBox" title="TOOLTIP"></div>
+    <div id="aTwentySix" class="tooltip achievementBox" title="TOOLTIP"></div>
+    <div id="aCoresTwo" class="achievementHeaders">More Cores</div>
+    <div id="aTwentySeven" class="tooltip achievementBox" title="TOOLTIP"></div>
+    <div id="aTwentyEight" class="tooltip achievementBox" title="TOOLTIP"></div>
+    <div id="aTwentyNine" class="tooltip achievementBox" title="TOOLTIP"></div>
+    <div id="aOtherTwo" class="achievementHeaders">Elite Feats</div>
+    <div id="aThirty" class="tooltip achievementBox" title="TOOLTIP"></div>
+    <div id="aThirtyOne" class="tooltip achievementBox" title="TOOLTIP"></div>
+    <div id="aThirtyTwo" class="tooltip achievementBox" title="TOOLTIP"></div>
+</div>
+
+<div id="achievementPopup">
+    <div id="aEarned">Achievement Earned!</div>
+    <div id="aPopupText"></div>
+    <div id="aPopupDescription"></div>
+</div>
+
+
+<!--==================
+RIGHT DIV
+======================-->
+<div id="rightDiv">
+
+    <div id="topDiv">
+        <div id="playTime" class="rFloat">00:00</div>
+
+        <div id="clickCount" class="lFloat"></div>
+        <button type="button" id="executeButton" class="executeBtn">Execute: 0</button>
+        <button type="button" id="transcendButton" class="transcendBtn">Transcend</button>
+    </div>
+
+    <!--==================
+    MONSTER INFO
+    ======================-->
+
+    <div id="monsterInfo" class="border rFloat">
+            <div id="mName" class="border lFloat"></div>
+            <div id="mLevel" class="border rFloat"></div>
+            <div id="mInfoHp" class="border lFloat lClear"></div>
+            <div id="mHpValue" class="border lFloat"></div>
+            <div id="mInfoExp" class="border rFloat"></div>
+            <div id="mInfoAtk" class="border lFloat lClear"></div>
+            <div id="mAtkValue" class="border lFloat"></div>
+            <div id="mCores" class="border rFloat"></div>
+            <div id="mInfoDef" class="border lFloat lClear"></div>
+            <div id="mDefValue" class="border lFloat"></div>
+            <div id="mFlavor" class="border rFloat"></div>
+    </div> <!--end monster info-->
+
+    <button type="button" id="toggleMInfo" class="rFloat">Hide Monster</button>
+
+    <!--==================
+    PLAYER INFO
+    ======================-->
+
+    <div id="playerInfo" class="rFloat">
+        <div id="playerName" class="border lFloat">
+                <div id="pName" class="border lFloat"></div>
+                <div id="pLevelValue" class="border rFloat rclear"></div>
+                <div id="pLevel" class="border rFloat">Level</div>
+                <div id="pExp" class="border lFloat lClear">Experience</div>
+                <div id="pExpValue" class="border lFloat"></div>
+                <div id="pExpTotal" class="border lFloat"></div>
+        </div>
+
+        <div id="playerStats" class="border lFloat">
+                <div id="pInfoHp" class="border lFloat">Health:</div>
+                <div id="pHpValue" class="border lFloat"></div>
+                <div id="pInfoAtk" class="border lFloat">Attack:</div>
+                <div id="pAtkValue" class="border lFloat"></div>
+                <div id="pInfoDef" class="border lFloat">Defense:</div>
+                <div id="pDefValue" class="border lFloat"></div>
+        </div>
+
+        <div id="playerUpgrades" class="border rFloat">
+                <div id="pHpButton" class="border lFloat lClear"><button type="button" id="btnHp" class="upgradeButtons">+1</button></div>
+                <div id="pHpCost" class="border lFloat rClear"></div>
+                <div id="pAtkButton" class="border lFloat lClear"><button type="button" id="btnAtk" class="upgradeButtons">+1</button></div>
+                <div id="pAtkCost" class="border lFloat rClear"></div>
+                <div id="pDefButton" class="border lFloat lClear"><button type="button" id="btnDef" class="upgradeButtons">+1</button></div>
+                <div id="pDefCost" class="border lFloat rClear"></div>
+                <div id="pCores" class="border rFloat"></div>
+        </div>
+        <div id="resetUpgrades" class="lFloat"><button type="button" id="resetUpgradesBtn" class="refocusBtn">Refocus Cores: 00:00</button></div>
+
+    </div> <!--end player info-->
+    <button type="button" id="togglePInfo" class="rFloat">Hide Player</button>
+
+    <!--==================
+    INFORMATION
+    ======================-->
+
+    <div id="information" class="rFloat">
+        <div id="statisticsLeft" class="border lFloat">
+                <div id="leftTitle" class="border">Statisti<span id="special">c</span>s</div>
+                <div id="sClicks" class="border lFloat lClear">Clicks: <span id="spanClicks"></span></div>
+                <div id="sKills" class="border lFloat lClear">Total kills: <span id="spanKills"></span></div>
+                <div id="sCores" class="border lFloat lClear">Total cores: <span id="spanCores"></span></div>
+                <div id="sChests" class="border lFloat lClear">Chests found: <span id="spanChests"></span></div>
+                <div id="sExecutes" class="border lFloat lClear">Executes: <span id="spanExecutes"></span></div>
+                <div id="sLevels" class="border lFloat lClear">Total levels: <span id="spanLevels"></span></div>
+                <div id="sTranscends" class="border lFloat lClear">Transcends: <span id="spanTranscends"></span></div>
+                <div id="sSuperCores" class="border lFloat lClear">Super Cores: <span id="spanSuperCores"></span></div>
+                <div id="sSpawn" class="border lFloat lClear">Spawn time: <span id="spanSpawn"></span>ms</div>
+                <div id="sBonusHp" class="border lFloat lClear">Health Bonus: <span id="spanBonusHp"></span></div>
+                <div id="sBonusAtk" class="border lFloat lClear">Attack Bonus: <span id="spanBonusAtk"></span></div>
+                <div id="sBonusDef" class="border lFloat lClear">Defense Bonus: <span id="spanBonusDef"></span></div>
+                <div id="sBonusExp" class="border lFloat lClear">Experience Bonus: <span id="spanBonusExp"></span></div>
+                <div id="sBonusCores" class="border lFloat lClear">Cores Bonus: <span id="spanBonusCores"></span></div>
+        </div>
+
+        <div id="statisticsRight" class="border rFloat">
+                <div id="rightTitle" class="border">Monster Status</div>
+                <div id="sGreen" class="border">Green Slime: <span id="sgreenSlime"></span></div>
+                <div id="sRed" class="border">Red Slime: <span id="sredSlime"></span></div>
+                <div id="sTree" class="border">Tree: <span id="streeSmall"></span></div>
+                <div id="sScorpion" class="border">Scorpion: <span id="sscorpionSmall"></span></div>
+                <div id="sBoar" class="border">Boar: <span id="sboarSmall"></span></div>
+                <div id="sGiant" class="border">Giant: <span id="sgiantSmall"></span></div>
+                <div id="sGargoyle" class="border">Gargoyle: <span id="sgargoyleSmall"></span></div>
+                <div id="sBunny" class="border">Bunny: <span id="sbunnySmall"></span></div>
+                <div id="sBeast" class="border">Beast: <span id="smanaBeast"></span></div>
+                <div id="sSpecter" class="border">Specter: <span id="sspecterSmall"></span></div>
+                <div id="sDragon" class="border">Dragon: <span id="sdragonSmall"></span></div>
+        </div>
+    </div> <!--end information div-->
+    <button type="button" id="toggleSInfo" class="rFloat">Hide Statistics</button>
+    <div id="achievementDivider"></div>
+    <button type="button" id="toggleAchievements" class="achievementButtons">Achievements</button>
+    <button type="button" id="toggleAchievementsTwo" class="achievementButtons">Elite Achievements</button>
+
+</div> <!--end right div-->
+
+
+<!--==================
+LEFT DIV
+======================-->
+<div id="leftDiv">
+
+    <div id="cathyLog">
+        <div id="logTitle"></div>
+    </div>
+
+
+    <div id="gameSettings">
+        <div id="settingsTitle">Game Settings</div>
+        <button type="button" id="exportSave">Export Save</button>
+        <button type="button" id="importSave">Import Save</button>
+        <button type="button" id="deleteData">Delete Data</button>
+        <div id="settingsPopup"></div>
+        <label for="gameDataString"></label> <!--they get upset if i dont include this-->
+        <textarea readonly="readonly" id="gameDataString"></textarea>
+    </div>
+
+
+    <!--==================
+    CATHY STATUS BOX
+    ======================-->
+
+    <div id="upgradeCathy">
+
+        <div id="cathyTitle" class="border lFloat">Cathy</div>
+        <div id="cDps" class="border rFloat"></div>
+
+        <div id="cathyStats" class="border lFloat lClear">
+            <div id="cInfoAtk" class="border lFloat lClear">Attack:</div>
+            <div id="cAtkValue" class="border lFloat"></div>
+            <div id="cInfoSpd" class="border lFloat">Speed:</div>
+            <div id="cSpdValue" class="border lFloat"></div>
+        </div>
+
+        <div id="cathyUpgrades" class="border rFloat rClear">
+            <div id="cAtkButton" class="border lFloat"><button type="button" id="cathyBtnAtk">+<span id="atkUpgradeIncrement"></span></button></div>
+            <div id="cAtkCost" class="border lFloat"></div>
+            <div id="cSpdButton" class="border lFloat lClear"><button type="button" id="cathyBtnSpd">+<span id="spdUpgradeIncrement"></span></button></div>
+            <div id="cSpdCost" class="border lFloat"></div>
+        </div>
+        <div id="pauseBtn"><button type="button" id="stopClickBtn" class="rFloat">Pause</button></div>
+        <button type="button" id="fightCathyBtn" class="lFloat">Duel: 00:00</button>
+    </div>
+    <button type="button" id="toggleCInfo" class="rFloat">Hide Cathy</button>
+
+<!--==================
+BOTTOM DIV
+======================-->
+
+    <div id="bottomDiv" class="lFloat">
+            <!--<li id="copyright" class="border lFloat">C2015</li>-->
+            <div id="about" class="border lFloat"><a href="http://www.clickerchat.com/about.html" target="_blank">About</a></div>
+            <div id="logPage" class="border lFloat"><a>Log</a></div>
+            <div id="settings" class="border lFloat"><a>Settings</a></div>
+            <div id="donate" class="border lFloat"><a href="http://www.clickerchat.com/support" target="_blank">Support</a></div>
+    </div>
+</div> <!--end left div-->
+<noscript>Please enable javascript in the browser to play the game.</noscript>
+</body>
+</html>
